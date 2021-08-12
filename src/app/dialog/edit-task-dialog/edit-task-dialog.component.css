@@ -1,0 +1,52 @@
+.mat-button.mat-success,
+.mat-stroked-button.mat-success {
+    color: #155724;
+
+}
+.mat-button.mat-success:hover,
+.mat-stroked-button.mat-success:hover {
+  background-color: #f0fff3;
+
+}
+
+.mat-raised-button.mat-success,
+.mat-flat-button.mat-success,
+.mat-fab.mat-success,
+.mat-mini-fab.mat-success {
+  color: #f0fff3;
+  background-color: #155724;
+}
+
+.mat-icon-button.mat-success {
+  color:#155724;
+
+}
+
+.size25 {
+  font-size: 25px !important;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-dialog-container {
+  padding: 40px !important;
+}
+
+.compl {
+  outline: 0 !important;
+  margin-right: 10px;
+}
+.retr {
+  outline: 0 !important;
+}
+
+.btns {
+  margin-left: 400px;
+}
+
+.size15 {
+  font-size: 15px !important;
+
+}

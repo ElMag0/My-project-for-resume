@@ -1,0 +1,109 @@
+<mat-dialog-content>
+    <p mat-dialog-title>{{dialogTitle}}</p>
+
+    <mat-form-field>
+        <mat-label>Название задачи</mat-label>
+
+        <input #inputTitle matInput
+            [(ngModel)]="tmpTitle"
+            (keydown.enter)="onConfirm()"
+        >   
+        
+        <button *ngIf="tmpTitle.length > 0"
+            mat-button matSuffix mat-icon-button aria-label="clear"
+            (click)="tmpTitle=''" class="dialog-task-title"
+            >
+
+            <mat-icon>clear</mat-icon>
+        </button>
+
+    </mat-form-field>
+<!--  -->
+    <mat-form-field>
+
+        <mat-label>Исполнитель</mat-label>
+
+        <mat-select [(ngModel)]="tmpUser">
+
+            <mat-option [value]="null">Без исполнителя</mat-option>
+            <mat-option *ngFor="let user of users" [value]="user">{{user.title}}</mat-option>
+
+        </mat-select>
+
+    </mat-form-field>
+<!--  -->
+
+    <mat-form-field>
+        <mat-label>Укажите приоритет</mat-label>
+
+        <mat-select [(ngModel)]="tmpPriority">
+
+            <mat-option [value]="null">Без приоритета</mat-option>
+            <mat-option *ngFor="let p of priorities" [value]="p">{{p.title}}</mat-option>
+
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput #inputDate readonly="true" 
+            placeholder="Укажите дату выполнения"
+            [matDatepicker]="picker"
+            [(ngModel)]="tmpDate"
+
+            (click)="picker.open()"
+        >
+
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+        <mat-datepicker #picker></mat-datepicker>
+
+        <button *ngIf="inputDate.value.length > 0"
+            mat-button matSuffix mat-icon-button aria-label="clear"
+
+            (click)="tmpDate = null" class="size15"
+            >
+            <mat-icon>clear</mat-icon>
+        </button>
+      </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-raised-button color="success" disabled
+        (click)="onConfirm()" 
+        [disabled]="inputTitle.value.length === 0"
+    >
+    Сохранить
+    </button>
+
+    <button *ngIf="canDelete()"
+        mat-raised-button color="warn" 
+        (click)="delete()"
+        >Удалить
+    </button>
+
+    <button mat-raised-button 
+        (click)="onCancel()"
+        > Отменить
+    </button>
+
+    <div class="btns" *ngIf="canDelete()">
+        <button mat-mini-fab 
+         color="success" 
+         class="compl"
+         (click)="complete()"
+         >
+            <mat-icon>assignment_turned_in</mat-icon>
+        </button>
+    
+        <button
+         mat-mini-fab 
+         color="primary" 
+         class="retr"
+         (click)="activate()"
+         >
+            <mat-icon>restore_page</mat-icon>
+        </button>
+    </div>
+
+</mat-dialog-actions>

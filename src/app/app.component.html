@@ -1,0 +1,77 @@
+<ng-sidebar-container style="height: 100vh">
+    
+    <ng-sidebar
+        (onClosed)="onClosedMenu()"
+        [animate]="true"
+        [autoFocus]="false"
+        [closeOnClickBackdrop]="true"
+        [closeOnClickOutside]="false"
+        [mode]="menuMode"
+        [opened]="menuOpened"
+        [position]="menuPosition"
+        [showBackdrop]="showBackdrop"
+    >
+
+    <app-users 
+        [users]="users"
+        [selectedUser]="selectedUser"
+
+        (deleteUser)="onDeleteUser($event)"
+        (updateUser)="onUpdateUser($event)"
+        (selectUser)="onSelectedUser($event)"
+        (addUser)="onAddUser($event)"
+        >
+    </app-users>
+
+</ng-sidebar>
+
+    <!--  -->
+
+    <div ng-sidebar-content>
+        <div class="main-panel">
+
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+                <app-header (toggleMenu)="toggleMenu()"
+                [userName]="selectedUser ? selectedUser.title: 'Все'"
+                >
+
+                </app-header>
+            </nav>
+
+        <div class="main-panel">
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+    
+                            <app-tasks 
+                            
+                            [tasks]="tasks"
+                            [priorities]="priorities"
+                            [selectedUser]="selectedUser"
+    
+                            (updateTask)="onUpdateTask($event)"
+                            (deleteTask)="onDeleteTask($event)"
+                            (selectUser)="onSelectedUser($event)"
+    
+                            (filterByStatus)="onFilterTasksByStatus($event)"
+                            (filterByTitle)="onSearchTasks($event)"
+                            (filterByPriority)="onFilterTasksByPriority($event)"
+    
+                            (addTask)="onAddTask($event)"
+                            
+                            ></app-tasks>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</ng-sidebar-container>    
+
+
+
+
+
